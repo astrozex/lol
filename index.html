@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Astrozex | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="https://i.imgur.com/8rtTgjT.gif" alt="Astrozex Logo" class="logo" />
+      <span class="brand-text">Astrozex_</span>
+    </div>
+    <nav>
+      <a href="#minecraft">Minecraft</a>
+      <a href="#socials">Social Media</a>
+    </nav>
+  </header>
+
+  <section id="bio" class="glass-box bio-box hidden-box">
+    <div class="sparkle sparkle-tl"></div>
+    <div class="sparkle sparkle-br"></div>
+    <img src="https://i.imgur.com/8rtTgjT.gif" class="avatar" alt="Astrozex Avatar"/>
+    <div class="bio-text">
+      <h2 class="yellow-title">
+        Hi, I’m Astrozex | I'm a <span class="typewrite" data-period="2000" data-type='[ "Python Dev_", "Server Dev_", "Website Builder", "Bot Builder" ]'></span>
+      </h2>
+      <p>I build Discord bots, Minecraft servers, and cool websites.<br>Let’s connect and build something awesome together!</p>
+    </div>
+  </section>
+
+  <section id="socials" class="glass-box socials-box hidden-box">
+    <h2 class="center-title">My Socials</h2>
+    <div class="button-grid tight">
+      <a href="https://discord.gg/empx" target="_blank" rel="noopener noreferrer">Discord</a>
+      <a href="https://www.youtube.com/@astrozexyt" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="https://www.instagram.com/itz.astrozex/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://x.com/astro_zex" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+    </div>
+  </section>
+
+  <section id="minecraft" class="glass-box crypto-box hidden-box">
+    <div class="sparkle sparkle-tl minecraft-theme"></div>
+    <div class="sparkle sparkle-br minecraft-theme"></div>
+    <h2 class="center-title">Minecraft Server</h2>
+    <div class="wallet-buttons">
+      <button onclick="showMsg('play')">Play Now</button>
+      <button onclick="showMsg('info')">More Info</button>
+    </div>
+    <p id="play" class="hidden-msg">Coming Very Soon</p>
+    <p id="info" class="hidden-msg">Coming Very Soon</p>
+  </section>
+
+  <section id="studios" class="glass-box studios-box hidden-box">
+    <h2 class="center-title">Get everything at one place</h2>
+    <div class="slider-container">
+      <div class="slider-track">
+        <img src="https://i.imgur.com/nsxPxKy.png" alt="1" />
+        <img src="https://i.imgur.com/n4XvAEX.png" alt="2" />
+        <img src="https://i.imgur.com/z87LttM.png" alt="3" />
+        <img src="https://i.imgur.com/KPST07A.png" alt="4" />
+        <img src="https://i.imgur.com/bUlKghC.png" alt="5" />
+        <img src="https://i.imgur.com/6GW5rVh.png" alt="6" />
+        <img src="https://i.imgur.com/jD99tKR.png" alt="7" />
+        <img src="https://i.imgur.com/aATI8OY.png" alt="8" />
+        <img src="https://i.imgur.com/t7L2VZm.png" alt="9" />
+        <img src="https://i.imgur.com/fZSqgNO.png" alt="10" />
+        <img src="https://i.imgur.com/nsxPxKy.png" alt="1b" />
+        <img src="https://i.imgur.com/n4XvAEX.png" alt="2b" />
+        <img src="https://i.imgur.com/z87LttM.png" alt="3b" />
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">© 2025 Astrozex | All rights reserved</div>
+    <div class="footer-center" id="currentDate"></div>
+    <div class="footer-right">
+      <a href="https://discord.gg/empx" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i></a>
+      <a href="https://www.youtube.com/@astrozexyt" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+      <a href="https://x.com/astro_zex" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/itz.astrozex/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    // Typewriter animation
+    const txtElement = document.querySelector(".typewrite");
+    const words = JSON.parse(txtElement.getAttribute("data-type"));
+    const wait = txtElement.getAttribute("data-period");
+    let txt = "";
+    let wordIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+      const current = wordIndex % words.length;
+      const fullTxt = words[current];
+
+      txt = isDeleting ? fullTxt.substring(0, txt.length - 1) : fullTxt.substring(0, txt.length + 1);
+      txtElement.innerHTML = `<span class="wrap">${txt}</span>`;
+
+      let typeSpeed = isDeleting ? 60 : 120;
+
+      if (!isDeleting && txt === fullTxt) {
+        typeSpeed = wait;
+        isDeleting = true;
+      } else if (isDeleting && txt === "") {
+        isDeleting = false;
+        wordIndex++;
+        typeSpeed = 300;
+      }
+
+      setTimeout(type, typeSpeed);
+    }
+    document.addEventListener("DOMContentLoaded", type);
+
+    // Show Minecraft button messages
+    function showMsg(id) {
+      document.getElementById("play").style.display = "none";
+      document.getElementById("info").style.display = "none";
+      document.getElementById(id).style.display = "block";
+    }
+
+    // Intersection observer for fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.hidden-box').forEach(el => observer.observe(el));
+
+    // Set current date in footer center
+    document.getElementById("currentDate").innerText = new Date().toLocaleDateString();
+
+    // About box 3D tilt effect
+    const bioBox = document.querySelector('.bio-box');
+
+    bioBox.addEventListener('mousemove', e => {
+      const rect = bioBox.getBoundingClientRect();
+      const x = e.clientX - rect.left; // mouse x inside box
+      const y = e.clientY - rect.top;  // mouse y inside box
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * 10; // max 10deg rotateX
+      const rotateY = ((x - centerX) / centerX) * 10; // max 10deg rotateY
+
+      bioBox.style.transform = `perspective(800px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+      bioBox.style.boxShadow = `${-rotateY * 1.5}px ${rotateX * 1.5}px 20px rgba(255, 215, 0, 0.6)`;
+    });
+
+    bioBox.addEventListener('mouseleave', () => {
+      bioBox.style.transform = 'none';
+      bioBox.style.boxShadow = 'none';
+    });
+  </script>
+
+</body>
+</html>

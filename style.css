@@ -1,0 +1,304 @@
+/* RESET & BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: white;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 3px solid yellow;
+  border-radius: 30px 30px 10px 10px;
+  user-select: none;
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+.brand-text {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+}
+nav a {
+  color: white;
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+nav a:hover {
+  color: #ffd700;
+}
+
+/* TYPEWRITER */
+.typewrite > .wrap {
+  border-right: 0.08em solid #fff;
+}
+
+/* BOXES */
+.glass-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 3px solid yellow;
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  transition: all 0.8s ease;
+  user-select: none;
+}
+
+/* HIDE ON LOAD & SHOW ON SCROLL */
+.hidden-box {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease;
+}
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* SPARKLES */
+.sparkle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #fff, transparent);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: sparkle-fade 2s infinite alternate;
+  pointer-events: none;
+}
+.sparkle-tl {
+  top: 10px;
+  left: 10px;
+}
+.sparkle-br {
+  bottom: 10px;
+  right: 10px;
+}
+.minecraft-theme {
+  background: radial-gradient(circle, #00ff00, transparent);
+}
+@keyframes sparkle-fade {
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.3); }
+}
+
+/* BIO BOX - About - with 3D tilt effect */
+.bio-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  animation: glow 2s infinite alternate;
+  flex-wrap: wrap;
+  perspective: 800px;
+  cursor: grab;
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
+}
+.bio-box:active {
+  cursor: grabbing;
+}
+.bio-box .avatar {
+  width: 150px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  user-select: none;
+  pointer-events: none;
+}
+.bio-text {
+  max-width: 600px;
+  user-select: none;
+  pointer-events: none;
+}
+.yellow-title {
+  color: #ffd700;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  user-select: text;
+}
+@keyframes glow {
+  0% { box-shadow: 0 0 10px #9b59b6; }
+  100% { box-shadow: 0 0 25px #9b59b6; }
+}
+
+/* SOCIALS */
+.socials-box {
+  transform: scale(1.03);
+}
+.center-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  user-select: none;
+}
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 0.5rem;
+  justify-items: center;
+  padding: 0 1rem;
+}
+.button-grid.tight {
+  gap: 0.5rem;
+}
+.button-grid a,
+.wallet-buttons button {
+  background-color: rgba(128, 0, 128, 0.1);
+  border: 2px solid yellow;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+.button-grid a:hover,
+.wallet-buttons button:hover {
+  color: purple;
+  background-color: white;
+  transform: scale(1.1);
+}
+
+/* MINECRAFT */
+.crypto-box {
+  text-align: center;
+  animation: glow 2s infinite alternate;
+  position: relative;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.crypto-box:hover {
+  box-shadow: 0 0 40px 10px rgba(255, 255, 0, 0.6);
+  border-color: #ffd700;
+}
+/* Minecraft elements on corners */
+.crypto-box::before,
+.crypto-box::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 2;
+  pointer-events: none;
+}
+.crypto-box::before {
+  top: -25px;
+  left: -25px;
+  background-image: url('https://i.imgur.com/F9kN5Pw.png'); /* Tree */
+}
+.crypto-box::after {
+  bottom: -25px;
+  right: -25px;
+  background-image: url('https://i.imgur.com/oN92iJG.png'); /* Pickaxe */
+}
+.wallet-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.crypto-box p {
+  margin-top: 1rem;
+  font-weight: bold;
+  user-select: none;
+}
+.hidden-msg {
+  display: none;
+}
+
+/* SLIDER */
+.slider-container {
+  overflow-x: hidden;
+  white-space: nowrap;
+  padding: 0.5rem;
+  user-select: none;
+}
+.slider-track {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  animation: slideLoop 15s linear infinite;
+}
+@keyframes slideLoop {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.slider-track img {
+  height: auto;
+  width: auto;
+  max-height: 100px;
+  object-fit: contain;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.slider-track img:hover {
+  transform: scale(1.3);
+  box-shadow: 0 0 15px #fff;
+}
+
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  border: 3px solid yellow;
+  border-radius: 10px 10px 30px 30px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ccc;
+  font-size: 0.9rem;
+  user-select: none;
+}
+.footer-left {
+  flex: 1;
+  min-width: 200px;
+}
+.footer-center {
+  flex: 1;
+  text-align: center;
+  min-width: 200px;
+}
+.footer-right {
+  flex: 1;
+  text-align: right;
+  min-width: 200px;
+}
+.footer-right a {
+  color: #ccc;
+  margin-left: 
